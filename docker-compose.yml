@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - //TRUENAS/Misc_storage/database-data/webscraper-db:/var/lib/postgresql/data
+      - //TRUENAS/Misc_storage/database-data/test:/var/lib/postgresql/data
       - ./database/transform:/docker-entrypoint-initdb.d
     networks:
       - sqlserver-network
