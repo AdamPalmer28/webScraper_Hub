@@ -1,4 +1,4 @@
-# Use the official Microsoft SQL Server image
+# Description: Dockerfile for PostgreSQL database container
 FROM postgres:latest
 
 # Set environment variables for default setup

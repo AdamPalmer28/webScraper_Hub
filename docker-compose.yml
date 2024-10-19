@@ -3,7 +3,7 @@ version: "3.8"
 services:
   sqlserver:
     build: ./database
-    container_name: webscrape-db
+    container_name: database-ws
     environment:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
@@ -11,8 +11,19 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - //TRUENAS/Misc_storage/database-data/test:/var/lib/postgresql/data
-      - ./database/transform:/docker-entrypoint-initdb.d
+      - //TRUENAS/Misc_storage/database-data/test:/raw-data
+      - ./database/transform:/transform
+    networks:
+      - sqlserver-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: sqlviewer
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
     networks:
       - sqlserver-network
 
